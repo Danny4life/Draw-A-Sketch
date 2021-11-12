@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Etch-A-Sketch</title>
+</head>
+<body>
+    
+
+    <h1 class="header">Draw Your Sketch</h1>
+
+    <main class="main-container">
+        <div class="settings-container">
+            <input id="color-picker" type="color" value="#333333">
+            <button id="color-btn">Color Stand</button>
+            <button id="rainbow-btn">Rainbow</button>
+            <button id="cleaner-btn">Eraser</button>
+            <button id="clear-btn">Cleaner</button>
+            <div id="pixelSize" class="pixel-size">Pixel Size</div>
+            <input id="pixelSlider" type="range" value="16" min="1" max="64">
+        </div>
+
+        <div id="grid" class="grid"></div>
+    </main>
+
+    <footer class="footer">
+        <p>Copyright © 2021</p>
+
+    </footer>
+    
+
+
+    <script src="script.js"></script>
+</body>
+</html>
