@@ -19,41 +19,45 @@ function setCurrentSize(newSize) {
     currentSize = newSize;
 }
 
-const colorPicker = document.getElementById("color-picker");
-const colorBtn = document.getElementById("color-btn");
-const rainbowBtn = document.getElementById("rainbow-btn");
-const cleanerBtn = document.getElementById("cleaner-btn");
-const clearBtn = document.getElementById("clear-btn");
-const pixelSize = document.getElementById("pixelSize");
-const pixelSlider = document.getElementById("pixelSlider");
-const grid = document.getElementById("grid");
+
+function changeSize(value) {
+  setCurrentSize(value)
+  updatePixelSize(value)
+  reloadGrid()
+}
+
+
+function updatePixelSize(value) {
+  pixelSize.innerHTML = `${value} x ${value}`
+}
+
+
+const colorPicker = document.querySelector("#color-picker");
+const colorBtn = document.querySelector("#color-btn");
+const rainbowBtn = document.querySelector("#rainbow-btn");
+const cleanerBtn = document.querySelector("#cleaner-btn");
+const deleteBtn = document.querySelector("#clear-btn");
+const pixelSize = document.querySelector("#pixelSize");
+const pixelSlider = document.querySelector("#pixelSlider");
+const grid = document.querySelector("#grid");
 
 colorPicker.onchange = (e) => setCurrentColor(e.target.value);
 colorBtn.onclick = () => setCurrentMode("color")
 rainbowBtn.onclick = () => setCurrentMode("rainbow")
 cleanerBtn.onclick = () => setCurrentMode("eraser")
-clearBtn.onclick = () => reloadGrid()
+deleteBtn.onclick = () => reloadGrid()
 pixelSlider.onmousemove = () => updatePixelSize(e.target.value)
 pixelSlider.onchange = (e) => changeSize(e.target.value)
 
-function changeSize(value) {
-    setCurrentSize(value)
-    updatePixelSize(value)
-    reloadGrid()
-}
-
-function updatePixelSize(value) {
-    pixelSize.innerHTML = `${value} x ${value}`
-  }
 
 
 function reloadGrid() {
-    clearGrid()
+    deleteGrid()
     setupGrid(currentSize)
   }
   
-  function clearGrid() {
-    grid.innerHTML = ''
+  function deleteGrid() {
+    grid.innerHTML = ""
   }
 
   function setupGrid(size) {
@@ -61,40 +65,40 @@ function reloadGrid() {
     grid.style.gridTemplateRows = `repeat(${size}, 1fr)`
   
     for (let i = 0; i < size * size; i++) {
-      const gridElement = document.createElement('div')
-      gridElement.addEventListener('mouseover', changeColor)
+      const gridElement = document.createElement("div")
+      gridElement.addEventListener("click", changeColor)
       grid.appendChild(gridElement)
     }
   }
 
   function changeColor(e) {
-    if (currentMode === 'rainbow') {
+    if (currentMode === "rainbow") {
       const randomR = Math.floor(Math.random() * 256)
       const randomG = Math.floor(Math.random() * 256)
       const randomB = Math.floor(Math.random() * 256)
       e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
-    } else if (currentMode === 'color') {
+    } else if (currentMode === "color") {
       e.target.style.backgroundColor = currentColor
-    } else if (currentMode === 'eraser') {
-      e.target.style.backgroundColor = '#fefefe'
+    } else if (currentMode === "eraser") {
+      e.target.style.backgroundColor = "#FF6D6D"
     }
   }
 
   function activateButton(newMode) {
-    if (currentMode === 'rainbow') {
-      rainbowBtn.classList.remove('active')
-    } else if (currentMode === 'color') {
-      colorBtn.classList.remove('active')
-    } else if (currentMode === 'eraser') {
-      cleanerBtn.classList.remove('active')
+    if (currentMode === "rainbow") {
+      rainbowBtn.classList.remove("active")
+    } else if (currentMode === "color") {
+      colorBtn.classList.remove("active")
+    } else if (currentMode === "eraser") {
+      cleanerBtn.classList.remove("active")
     }
   
-    if (newMode === 'rainbow') {
-      rainbowBtn.classList.add('active')
-    } else if (newMode === 'color') {
-      colorBtn.classList.add('active')
-    } else if (newMode === 'eraser') {
-      cleanerBtn.classList.add('active')
+    if (newMode === "rainbow") {
+      rainbowBtn.classList.add("active")
+    } else if (newMode === "color") {
+      colorBtn.classList.add("active")
+    } else if (newMode === "eraser") {
+      cleanerBtn.classList.add("active")
     }
   }
 

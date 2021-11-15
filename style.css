@@ -98,7 +98,7 @@ input[type="color"]:active {
 input[type="color"] {
     height: 80px;
     width: 80px;
-    border: none;
+    border: 2px solid var(--main-color);
 }
 
 input[type="color"]::-webkit-color-swatch-wrapper {
@@ -137,7 +137,8 @@ input[type="range"]::-webkit-slider-thumb {
     display: grid;
     width: 605px;
     height: 500px;
-    background-color: var(--secondary-color);
+    /* background-color: var(--secondary-color); */
+    background-color: #FF6D6D;
     box-shadow: rgba(0,0,0,0.24) 0px 3px 8px;
 }
 
